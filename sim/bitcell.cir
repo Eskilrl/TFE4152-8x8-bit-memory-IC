@@ -1,0 +1,20 @@
+*Bitcell
+
+.include logic_gates_library.cir
+
+*Parameters
+
+.param Vdd=0.3V
+
+.param L1=1u
+.param W1=10u
+
+*Test
+
+V1 1 0 dc Vdd
+Vin in 0 dc 0 
+
+xAND1 in 1 Y 1 0 2inAND
+
+.dc Vin 0 Vdd 0.01
+.plot v(Y)
