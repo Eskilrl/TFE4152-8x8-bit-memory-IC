@@ -4,23 +4,36 @@
 
 *Parameters
 
-.param Vdd=0.3V
+.param Vdd=1
 
 .param L1=1u
 .param W1=10u
 
-.subckt SRlatch inp outp Vdd Vss
-xNAND1 inp !Q Q Vdd Vss 2inNAND
-xNOT1 inp !inp Vdd Vss 1inNOT
-xNAND2 Q !inp !Q Vdd Vss 2inNAND
+.subckt SRlatch inp notoutp Vdd Vss
+xNOR1 inp notoutp outp Vdd Vss 2inNOR
+xNOT1 inp notinp Vdd Vss 1inNOT
+xNOR2 outp notinp notoutp Vdd Vss 2inNOR
+.ends
+
+.subckt SRbitcell inp sel rw outp Vdd Vss
+xAND1 inp sel rw tempinp Vdd Vss 3inAND
+xNOT1 rw notrw Vdd Vss 1inNOT
+xSR1 tempinp tempoutp Vdd Vss SRlatch
+xAND2 tempoutp notrw sel outp Vdd Vss 3inAND
 .ends
 
 *Test
 
 V1 1 0 dc Vdd
-Vin in 0 dc 0 
+Vinp inp 0 PULSE(0 Vdd 15ns 0.1ns 0.1ns 10ns 30ns)
+*Vsel sel 0 PULSE(0 Vdd 9ns 0.1ns 0.1ns 2ns 15ns)
+*Vrw rw 0 PULSE(0 Vdd 10ns 0.1ns 0.1ns 10ns 20ns)
 
-xAND1 in 1 Y 1 0 2inAND
+xSR1 inp Y 1 0 SRlatch
+*xBitcell inp sel rw Y 1 0 SRbitcell
 
-.dc Vin 0 Vdd 0.01
-.plot v(Y)
+.tran 5n 40n
+.plot v(inp) v(Y)
+
+
+
