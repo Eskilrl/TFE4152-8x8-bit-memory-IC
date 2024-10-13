@@ -1,6 +1,6 @@
 *Logic Gate Library -----------------------------
 
-.include  .\gpdk90nm\gpdk90nm_tt.cir
+.include  .\gpdk90nm\gpdk90nm_ss.cir
 
 *NOT gate ---------------------------------------
 
