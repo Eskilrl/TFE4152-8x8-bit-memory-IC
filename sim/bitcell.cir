@@ -9,6 +9,12 @@
 .param L1=1u
 .param W1=10u
 
+.subckt SRlatch inp outp Vdd Vss
+xNAND1 inp !Q Q Vdd Vss 2inNAND
+xNOT1 inp !inp Vdd Vss 1inNOT
+xNAND2 Q !inp !Q Vdd Vss 2inNAND
+.ends
+
 *Test
 
 V1 1 0 dc Vdd
