@@ -1,10 +1,12 @@
 module Decoder (
+
+//INPUTS
+
 input[2:0] i_k_address,
 
 //OUTPUTS
 
 output[7:0] o_select
-);
 
 typedef enum logic[3:0] {
   cell_0,
@@ -32,9 +34,9 @@ case(addr_select)
   cell_5: o_select = 8'b00100000;
   cell_6: o_select = 8'b01000000;
   cell_7: o_select = 8'b10000000;
-  default: o_select = 8'b00000000; 
+  default: o_select = 8'b00000000;
 endcase;
-	
+
 end;
 
 endmodule
