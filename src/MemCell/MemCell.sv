@@ -25,7 +25,7 @@ FlipFlop BC_1(
 FlipFlop BC_2(
  .i_sel(i_m_sel),
  .i_inp(i_m_input[2]),
- .i_wr(i_m_RW)
+ .i_wr(i_m_RW),
  .o_outp(o_m_output[2])
   );
 

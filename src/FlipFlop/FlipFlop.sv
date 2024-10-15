@@ -18,7 +18,7 @@ wire w_NOR_inn_2;
 
 
 assign w_NOR_inn_1 = i_inp&&i_sel&&i_wr;
-assign w_NOR_inn_2 = !i_inp&&i_sel%%i_wr;
+assign w_NOR_inn_2 = !i_inp&&i_sel&&i_wr;
 
 assign w_NOR_out_1 = !(w_NOR_inn_1||w_NOR_out_2);
 assign w_NOR_out_2 = !(w_NOR_inn_2||w_NOR_out_1);
