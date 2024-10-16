@@ -29,12 +29,13 @@ xAND3 tempoutp notrw sel outp Vdd Vss 3inAND
 *Test
 
 V1 1 0 dc Vdd
-Vinp inp 0 PULSE(0 Vdd 20ns 0.1ns 0.1ns 10ns 50ns)
-Vsel sel 0 PULSE(0 Vdd 5ns 0.1ns 0.1ns 2.9ns 15ns)
-Vrw rw 0 PULSE(Vdd 0 25ns 0.1ns 0.1ns 25ns 50ns)
+Vinp inp 0 PULSE(0 Vdd 15ns 0.1ns 0.1ns 10ns 50ns)
+Vsel sel 0 PULSE(0 Vdd 0ns 0.1ns 0.1ns 2.9ns 15ns)
+Vrw rw 0 PULSE(Vdd 0 20ns 0.1ns 0.1ns 25ns 50ns)
 
 xBitcell inp sel rw Y tempY 1 0 SRbitcell
 
 .tran 10n 50n
 .plot v(inp) v(sel) v(tempY) v(rw) v(Y)
+.plot i(V1)
 
