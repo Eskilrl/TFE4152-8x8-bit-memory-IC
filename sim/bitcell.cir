@@ -4,38 +4,39 @@
 
 *Parameters
 
-.param Vdd=0.46
+.param Vdd=0.4
 
 .param L1=100n
 .param W1=250n
 
 .subckt SRlatch inp1 inp2 outp Vdd Vss
-xNOR1 inp1 outp notoutp Vdd Vss 2inNOR
-xNOR2 notoutp inp2 outp Vdd Vss 2inNOR
+xNAND1 inp1 outp notoutp Vdd Vss 2inNAND
+xNAND2 notoutp inp2 outp Vdd Vss 2inNAND
 .ends
 
 .subckt SRbitcell inp sel rw outp tempoutp Vdd Vss
-xAND1 inp sel rw tempinp1 Vdd Vss 3inAND
-xNOT1 rw notrw Vdd Vss 1inNOT
+xNAND3 inp sel rw tempinp1 Vdd Vss 3inNAND
+xNAND4 tempinp1 sel rw tempinp2 Vdd Vss 3inNAND
 
-xNOT2 inp notinp Vdd Vss 1inNOT
-xAND2 notinp sel rw tempinp2 Vdd Vss 3inAND
+xSR1 tempinp2 tempinp1 tempoutp Vdd Vss SRlatch
 
-xSR1 tempinp1 tempinp2 tempoutp Vdd Vss SRlatch
-
+xNOT rw notrw Vdd Vss 1inNOT
 xAND3 tempoutp notrw sel outp Vdd Vss 3inAND
 .ends
 
 *Test
 
 V1 1 0 dc Vdd
-Vinp inp 0 PULSE(0 Vdd 15ns 0.1ns 0.1ns 10ns 50ns)
-Vsel sel 0 PULSE(0 Vdd 0ns 0.1ns 0.1ns 2.9ns 15ns)
-Vrw rw 0 PULSE(Vdd 0 20ns 0.1ns 0.1ns 25ns 50ns)
+Vinp inp 0 PULSE(0 Vdd 20ns 0.1ns 0.1ns 10ns 50ns)
+Vsel sel 0 PULSE(0 Vdd 5ns 0.1ns 0.1ns 2.9ns 15ns)
+Vrw rw 0 PULSE(Vdd 0 25ns 0.1ns 0.1ns 25ns 50ns)
 
 xBitcell inp sel rw Y tempY 1 0 SRbitcell
 
-.tran 10n 50n
+
+.tran 10n 60n
 .plot v(inp) v(sel) v(tempY) v(rw) v(Y)
-.plot i(V1)
+
+*xBitcell 0 0 1 Y tempY 1 0 SRbitcell
+*.op xBitcell
 
