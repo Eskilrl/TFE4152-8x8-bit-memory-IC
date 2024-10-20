@@ -5,7 +5,7 @@
 *NOT gate ---------------------------------------
 
 .subckt 1inNOT in1 out1 Vdd Vss
-xmp1 Vdd in1 out1 Vss pmos1v L=L1 W=W1
+xmp1 Vdd in1 out1 Vdd pmos1v L=L1 W=W1
 xmn1 out1 in1 Vss Vss nmos1v L=L1 W=W1
 .ends
 
@@ -13,17 +13,17 @@ xmn1 out1 in1 Vss Vss nmos1v L=L1 W=W1
 *NAND gates -------------------------------------
 
 .subckt 2inNAND in1 in2 out1 Vdd Vss
-xmp1 Vdd in1 out1 Vss pmos1v L=L1 W=W1
-xmp2 Vdd in2 out1 Vss pmos1v L=L1 W=W1
+xmp1 Vdd in1 out1 Vdd pmos1v L=L1 W=W1
+xmp2 Vdd in2 out1 Vdd pmos1v L=L1 W=W1
 
 xmn1 out1 in1 dn2 Vss nmos1v L=L1 W=W1
 xmn2 dn2 in2 Vss Vss nmos1v L=L1 W=W1
 .ends
 
 .subckt 3inNAND in1 in2 in3 out1 Vdd Vss
-xmp1 Vdd in1 out1 Vss pmos1v L=L1 W=W1
-xmp2 Vdd in2 out1 Vss pmos1v L=L1 W=W1
-xmp3 Vdd in3 out1 Vss pmos1v L=L1 W=W1
+xmp1 Vdd in1 out1 Vdd pmos1v L=L1 W=W1
+xmp2 Vdd in2 out1 Vdd pmos1v L=L1 W=W1
+xmp3 Vdd in3 out1 Vdd pmos1v L=L1 W=W1
 
 xmn1 out1 in1 dn2 Vss nmos1v L=L1 W=W1
 xmn2 dn2 in2 dn3 Vss nmos1v L=L1 W=W1
@@ -47,8 +47,8 @@ xNOT1 temp out1 Vdd Vss 1inNOT
 *NOR gate ----------------------------------------
 
 .subckt 2inNOR in1 in2 out1 Vdd Vss
-xmp1 Vdd in1 dp2 Vss pmos1v L=L1 W=W1
-xmp2 dp2 in2 out1 Vss pmos1v L=L1 W=W1
+xmp1 Vdd in1 dp2 Vdd pmos1v L=L1 W=W1
+xmp2 dp2 in2 out1 Vdd pmos1v L=L1 W=W1
 
 xmn1 out1 in1 Vss Vss nmos1v L=L1 W=W1
 xmn2 out1 in2 Vss Vss nmos1v L=L1 W=W1
