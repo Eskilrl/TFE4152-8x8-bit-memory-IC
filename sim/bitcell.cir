@@ -14,13 +14,13 @@ xNAND2 notoutp inp2 outp Vdd Vss 2inNAND
 .ends
 
 .subckt SRbitcell inp sel rw outp tempoutp Vdd Vss
-xNAND1 inp sel rw tempinp1 Vdd Vss 3inNAND
-xNAND2 tempinp1 sel rw tempinp2 Vdd Vss 3inNAND
+xNAND3 inp sel rw tempinp1 Vdd Vss 3inNAND
+xNAND4 tempinp1 sel rw tempinp2 Vdd Vss 3inNAND
 
 xSR1 tempinp2 tempinp1 tempoutp Vdd Vss SRlatch
 
 xNOT1 rw notrw Vdd Vss 1inNOT
-xAND3 tempoutp notrw sel outp Vdd Vss 3inAND
+xAND1 tempoutp notrw sel outp Vdd Vss 3inAND
 .ends
 
 *Test signals
