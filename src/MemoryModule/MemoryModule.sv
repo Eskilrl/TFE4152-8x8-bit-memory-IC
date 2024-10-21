@@ -49,6 +49,13 @@ Decoder decoder(
  .o_select(selectBuss)
 );
 
+//ADD FSM here:
+
+
+
+
+//END of FSM
+
 
 MemCell Mem0 (
  .i_m_input(inputBuss),
