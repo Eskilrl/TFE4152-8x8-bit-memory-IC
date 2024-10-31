@@ -30,6 +30,7 @@ Dff dff_inst_1(
   .o_Q(X1)
 );
 
+//implement logic here:
 
  
 
