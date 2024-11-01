@@ -1,28 +1,23 @@
 module Dff (
-  input i_D,
-  input i_clk,
-  output wire o_Q
+  input D,
+  input clk,
+  output wire Q
 );
 
-wire w_Q;
-wire w_Q_not;
-wire w_clk_inv;
-wire w_enable;
-wire w_D_not;
-wire w_S;
-wire w_R;
+wire masterQ, clk_n;
 
-not(w_Q_not, w_Q);
-not(w_D_not, i_D);
-not(clk_inv, i_clk);
-and(w_enable, i_clk, w_clk_inv);
+not(clk_n,clk);
 
-nand(w_S, i_D, w_enable);
-nand(w_R, w_D_not, w_enable);
+Dlatch master(
+  .D(D),
+  .enable(clk_n),
+  .Q(masterQ)
+);
 
-nand(o_Q, w_D_not, w_S);
-nand(w_Q_not, o_Q, w_R);
+Dlatch slave(
+  .D(masterQ),
+  .enable(clk),
+  .Q(Q)
+);
 
-
-  
 endmodule
