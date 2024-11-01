@@ -3,6 +3,9 @@
 
 module MemoryModule (
 
+//Input Clock
+  input i_clk,
+
 //inputs
   input i0,
   input i1,
@@ -39,22 +42,27 @@ wire[7:0] inputBuss;
 wire[7:0] selectBuss;
 wire[7:0] outputBuss0, outputBuss1, outputBuss2, outputBuss3,
           outputBuss4, outputBuss5, outputBuss6, outputBuss7;
+
+
+wire valid;
+wire rw;
 		
 assign adrBuss = {adr2,adr1,adr0};
 assign inputBuss = {i7,i6,i5,i4,i3,i2,i1,i0};		  		  
 
 Decoder decoder(
  .i_k_address(adrBuss),
- .valid(select),
+ .valid(valid),
  .o_select(selectBuss)
 );
 
-//ADD FSM here:
-
-
-
-
-//END of FSM
+FSM FSM(
+ .FSM_op(op),
+ .FSM_select(select),
+ .i_clk(i_clk),
+ .FSM_valid(valid),
+ .FSM_rw(rw)
+);
 
 
 MemCell Mem0 (
