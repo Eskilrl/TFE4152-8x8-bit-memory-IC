@@ -1,0 +1,56 @@
+*Logic Gate Library -----------------------------
+
+.include  .\gpdk90nm\gpdk90nm_ss.cir
+
+*NOT gate ---------------------------------------
+
+.subckt 1inNOT in1 out1 Vdd Vss
+xmp1 Vdd in1 out1 Vdd pmos1v L=L1 W=W1
+xmn1 out1 in1 Vss Vss nmos1v L=L1 W=W1
+.ends
+
+
+*NAND gates -------------------------------------
+
+.subckt 2inNAND in1 in2 out1 Vdd Vss
+xmp1 Vdd in1 out1 Vdd pmos1v L=L1 W=W1
+xmp2 Vdd in2 out1 Vdd pmos1v L=L1 W=W1
+
+xmn1 out1 in1 dn2 Vss nmos1v L=L1 W=W1
+xmn2 dn2 in2 Vss Vss nmos1v L=L1 W=W1
+.ends
+
+.subckt 3inNAND in1 in2 in3 out1 Vdd Vss
+xmp1 Vdd in1 out1 Vdd pmos1v L=L1 W=W1
+xmp2 Vdd in2 out1 Vdd pmos1v L=L1 W=W1
+xmp3 Vdd in3 out1 Vdd pmos1v L=L1 W=W1
+
+xmn1 out1 in1 dn2 Vss nmos1v L=L1 W=W1
+xmn2 dn2 in2 dn3 Vss nmos1v L=L1 W=W1
+xmn3 dn3 in3 Vss Vss nmos1v L=L1 W=W1
+.ends
+
+
+*AND gates --------------------------------------
+
+.subckt 2inAND in1 in2 out1 Vdd Vss
+xNAND1 in1 in2 temp Vdd Vss 2inNAND
+xNOT1 temp out1 Vdd Vss 1inNOT
+.ends
+
+.subckt 3inAND in1 in2 in3 out1 Vdd Vss
+xNAND1 in1 in2 in3 temp Vdd Vss 3inNAND
+xNOT1 temp out1 Vdd Vss 1inNOT
+.ends
+
+
+*NOR gate ----------------------------------------
+
+.subckt 2inNOR in1 in2 out1 Vdd Vss
+xmp1 Vdd in1 dp2 Vdd pmos1v L=L1 W=W1
+xmp2 dp2 in2 out1 Vdd pmos1v L=L1 W=W1
+
+xmn1 out1 in1 Vss Vss nmos1v L=L1 W=W1
+xmn2 out1 in2 Vss Vss nmos1v L=L1 W=W1
+.ends
+
