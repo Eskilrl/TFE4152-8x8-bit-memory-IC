@@ -22,13 +22,60 @@ always begin
     clk = ~clk;
 end
 
-initial begin
+initial begin 
+op=0;
+select=0;
 
-#7;
+#7;	 
+#10;
+//idle
+op=0;
+select=0;
+#10;  
+//write
+op=1;
+select=1;
+#10;  
+//try to write
+op=1;
+select=1;
+#10;  
+//write
+op=1;
+select=1;
+#10;  
+
+op=0;
+select=0;
+#10;  
+//read
+op=0;
+select=1;
+#10;
+//read
+op=0;
+select=1;
+#10;
+//Idle
 op=0;
 select=0;
 #10;
-
+//read
+op=0;
+select=1;
+#10;
+//Write
+op=1;
+select=1;
+#10;
+//stable
+op=0;
+select=1;
+#10;
+//Idle
+op=1;
+select=0;
+#10;
     $finish;
 end
 
