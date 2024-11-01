@@ -21,11 +21,11 @@ not(inverted_address2, i_k_address[2]);
 
 and(o_select[0], inverted_address2, inverted_address1, inverted_address0);
 and(o_select[1], inverted_address2, inverted_address1, i_k_address[0]);
-and(o_select[2], inverted_address2, i_k_address[1], inverted_address0);
-and(o_select[3], inverted_address2, i_k_address[1], i_k_address[0]);
-and(o_select[4], i_k_address[2], inverted_address1, inverted_address0);
-and(o_select[5], i_k_address[2], inverted_address1, i_k_address[0]);
-and(o_select[6], i_k_address[2], i_k_address[1], inverted_address0);
-and(o_select[7], i_k_address[2], i_k_address[1], i_k_address[0]);  
+and(o_select[2], inverted_address2, i_k_address[1],    inverted_address0);
+and(o_select[3], inverted_address2, i_k_address[1],    i_k_address[0]);
+and(o_select[4], i_k_address[2],    inverted_address1, inverted_address0);
+and(o_select[5], i_k_address[2],    inverted_address1, i_k_address[0]);
+and(o_select[6], i_k_address[2],    i_k_address[1],    inverted_address0);
+and(o_select[7], i_k_address[2],    i_k_address[1],    i_k_address[0]);  
 
 endmodule
