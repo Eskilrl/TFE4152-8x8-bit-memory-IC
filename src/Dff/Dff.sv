@@ -15,6 +15,7 @@ wire w_R;
 not(w_Q_not, w_Q);
 not(w_D_not, i_D);
 not(clk_inv, i_clk);
+
 and(w_enable, i_clk, w_clk_inv);
 
 nand(w_S, i_D, w_enable);
