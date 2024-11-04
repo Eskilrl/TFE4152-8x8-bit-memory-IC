@@ -1,12 +1,12 @@
 module FSM (
 
     //Inputs
-    input i_op,
-    input i_select,
+    input op,
+    input select,
     input i_clk,
     //outputs
-    output o_valid,
-    output o_rw
+    output valid,
+    output rw
 );
 
 parameter Write = 2'b11;
@@ -17,24 +17,39 @@ parameter Idle = 2'b00;
 wire X0;
 wire X1;
 
-wire N_0;
-wire N_1;
+//Logic wires
 
+wire N0;
+wire N1;
+wire X0_and_X1;
+wire op_and_select;
+wire not_X0_and_X1;
+
+//next state logic here:
+
+and(X0_and_X1,X0,X1);
+and(op_and_select,op,select);
+
+not(not_X0_and_X1,X0_and_X1);
+
+and(N0,select,not_X0_and_X1);
+or(N1,X0_and_X1,op_and_select);
+
+buf(valid,X0);
+buf(rw,X1);
+
+//Flip flops to store current,
 Dff dff_inst_0(
-  .i_D(N_0),
+  .i_D(N0),
   .i_clk(i_clk),
   .o_Q(X0)
 );
 
 Dff dff_inst_1(
-  .i_D(N_1),
+  .i_D(N1),
   .i_clk(i_clk),
   .o_Q(X1)
 );
-
-//implement logic here:
-
- buf(N_0,i_select)
 
 
 endmodule
