@@ -19,10 +19,6 @@ module MemCell_tb;
   
   // Test process
   initial begin
-    // Monitor the changes in signals
-    $monitor("Time: %0t | i_m_input=%b | i_m_sel=%b | i_m_RW=%b | o_m_output=%b", 
-              $time, i_m_input, i_m_sel, i_m_RW, o_m_output);
-
     // Initialize the inputs
     i_m_input = 8'b00000000;
     i_m_sel = 0; // Deselected initially

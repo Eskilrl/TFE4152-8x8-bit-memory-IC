@@ -46,9 +46,23 @@ wire[7:0] outputBuss0, outputBuss1, outputBuss2, outputBuss3,
 
 wire valid;
 wire rw;
-		
-assign adrBuss = {adr2,adr1,adr0};
-assign inputBuss = {i7,i6,i5,i4,i3,i2,i1,i0};		  		  
+	
+buf(adrBuss[2],adr2);
+buf(adrBuss[1],adr1);
+buf(adrBuss[0],adr0);
+
+buf(inputBuss[7],i7);
+buf(inputBuss[6],i6);
+buf(inputBuss[5],i5);
+buf(inputBuss[4],i4);
+buf(inputBuss[3],i3);
+buf(inputBuss[2],i2);
+buf(inputBuss[1],i1);
+buf(inputBuss[0],i0);
+
+
+
+
 
 Decoder decoder(
  .i_k_address(adrBuss),
