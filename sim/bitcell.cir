@@ -3,10 +3,12 @@
 .include logic_gates_library.cir
 
 *Parameters
-.param Vdd=0.40
+.param Vdd=0.4
 .options temp=27
 .param L1=100n
-.param W1=300n
+.param W1=200n
+.param W2=283n
+.param W3=300n
 
 .subckt SRlatch inp1 inp2 outp Vdd Vss
 xNAND1 inp1 outp notoutp Vdd Vss 2inNAND
@@ -36,6 +38,6 @@ xBitcell inp sel rw Y tempY 1 0 SRbitcell
 .plot i(v1)
 
 *Static bitcell for leakage measurement
-*xBitcell 0 1 1 Y tempY 1 0 SRbitcell
+*xBitcell 0 0 0 Y tempY 1 0 SRbitcell
 *.op xBitcell
 
