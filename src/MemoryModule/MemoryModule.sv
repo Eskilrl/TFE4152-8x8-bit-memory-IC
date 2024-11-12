@@ -60,10 +60,6 @@ buf(inputBuss[2],i2);
 buf(inputBuss[1],i1);
 buf(inputBuss[0],i0);
 
-
-
-
-
 Decoder decoder(
  .i_k_address(adrBuss),
  .valid(valid),

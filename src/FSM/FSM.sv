@@ -9,11 +9,6 @@ module FSM (
     output rw
 );
 
-parameter Write = 2'b11;
-parameter Stable = 2'b01;
-parameter Read = 2'b10;
-parameter Idle = 2'b00;
-
 wire X0;
 wire X1;
 
