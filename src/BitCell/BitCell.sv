@@ -1,30 +1,35 @@
-module BitCell (
+module FlipFlop (
 
 //Inputs
 
-input i_sel,
-input i_inp,
-input i_wr,
+input sel,
+input inp,
+input wr,
 
 //OUPUTS
 
-output o_outp
+output outp
 );
 
-wire w_NOR_out_1;
-wire w_NOR_out_2;
-wire w_NOR_inn_1;
-wire w_NOR_inn_2;
+wire nottempoutp;
+wire tempoutp;
+wire tempinp1;
+wire tempinp2;
+wire notrw;
 
-and()
-nand()
-not()
-assign w_NOR_inn_1 = i_inp&&i_sel&&i_wr;
-assign w_NOR_inn_2 = !i_inp&&i_sel&&i_wr;
+//inverter
+not(notrw, wr);
 
-assign w_NOR_out_1 = !(w_NOR_inn_1||w_NOR_out_2);
-assign w_NOR_out_2 = !(w_NOR_inn_2||w_NOR_out_1);
+//First layer of nand gates
+nand(tempinp1, inp, sel, wr);
+nand(tempinp2, tempinp1, sel, wr);
 
-assign o_outp = !i_wr&&i_sel&&w_NOR_out_2;
+//second layer of nand gates
+nand(tempoutp, tempinp1, nottempoutp);
+nand(nottempoutp, tempinp2, tempoutp);
+
+//Define output
+and(outp,sel,notrw, tempoutp);
+
 
 endmodule
