@@ -1,4 +1,4 @@
-module BitCell (
+module FlipFlop (
 
 //Inputs
 
@@ -11,20 +11,25 @@ input i_wr,
 output o_outp
 );
 
-wire w_NOR_out_1;
-wire w_NOR_out_2;
-wire w_NOR_inn_1;
-wire w_NOR_inn_2;
+wire w_NAND_out_1;
+wire w_NAND_out_2;
+wire w_NAND_out_3;
+wire w_NAND_out_4;
+wire w_not_rw;
 
-and()
-nand()
-not()
-assign w_NOR_inn_1 = i_inp&&i_sel&&i_wr;
-assign w_NOR_inn_2 = !i_inp&&i_sel&&i_wr;
+//inverter
+not(w_not_rw, i_wr);
 
-assign w_NOR_out_1 = !(w_NOR_inn_1||w_NOR_out_2);
-assign w_NOR_out_2 = !(w_NOR_inn_2||w_NOR_out_1);
+//First layer of nand gates
+nand(w_NAND_out_3, i_inp, i_sel, i_wr);
+nand(w_NAND_out_4, w_NAND_out_3, i_sel, i_wr);
 
-assign o_outp = !i_wr&&i_sel&&w_NOR_out_2;
+//second layer of nand gates
+nand(w_NAND_out_2, w_NAND_out_3, w_NAND_out_1);
+nand(w_NAND_out_1, w_NAND_out_4, w_NAND_out_2);
+
+//Define output
+and(o_outp,i_sel,w_not_rw, w_NAND_out_2);
+
 
 endmodule
