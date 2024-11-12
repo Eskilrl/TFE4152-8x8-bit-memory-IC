@@ -42,6 +42,7 @@ wire[7:0] inputBuss;
 wire[7:0] selectBuss;
 wire[7:0] outputBuss0, outputBuss1, outputBuss2, outputBuss3,
           outputBuss4, outputBuss5, outputBuss6, outputBuss7;
+wire o0Im1, o0Im2, o1Im1, o1Im2, o2Im1, o2Im2, o3Im1, o3Im2, o4Im1, o4Im2, o5Im1, o5Im2, o6Im1, o6Im2, o7Im1, o7Im2;
 
 
 wire valid;
@@ -131,17 +132,34 @@ MemCell Mem7 (
  .o_m_output(outputBuss7)
   ); 
 
+//OR all inmtermidiates
 
-  
-//assign o0 = outputBuss0[0]||outputBuss1[0]||outputBuss2[0]||outputBuss3[0]||outputBuss4[0]||outputBuss5[0]||outputBuss6[0]||outputBuss7[0];
-//assign o1 = outputBuss0[1]||outputBuss1[1]||outputBuss2[1]||outputBuss3[1]||outputBuss4[1]||outputBuss5[1]||outputBuss6[1]||outputBuss7[1];
-//assign o2 = outputBuss0[2]||outputBuss1[2]||outputBuss2[2]||outputBuss3[2]||outputBuss4[2]||outputBuss5[2]||outputBuss6[2]||outputBuss7[2];
-//assign o3 = outputBuss0[3]||outputBuss1[3]||outputBuss2[3]||outputBuss3[3]||outputBuss4[3]||outputBuss5[3]||outputBuss6[3]||outputBuss7[3];
-//assign o4 = outputBuss0[4]||outputBuss1[4]||outputBuss2[4]||outputBuss3[4]||outputBuss4[4]||outputBuss5[4]||outputBuss6[4]||outputBuss7[4];
-//assign o5 = outputBuss0[5]||outputBuss1[5]||outputBuss2[5]||outputBuss3[5]||outputBuss4[5]||outputBuss5[5]||outputBuss6[5]||outputBuss7[5];
-//assign o6 = outputBuss0[6]||outputBuss1[6]||outputBuss2[6]||outputBuss3[6]||outputBuss4[6]||outputBuss5[6]||outputBuss6[6]||outputBuss7[6];
-//assign o7 = outputBuss0[7]||outputBuss1[7]||outputBuss2[7]||outputBuss3[7]||outputBuss4[7]||outputBuss5[7]||outputBuss6[7]||outputBuss7[7];
+or(o0Im1,outputBuss0[0],outputBuss1[0],outputBuss2[0],outputBuss3[0]);
+or(o0Im2,outputBuss4[0],outputBuss5[0],outputBuss6[0],outputBuss7[0]);
+or(o1Im1,outputBuss0[1],outputBuss1[1],outputBuss2[1],outputBuss3[1]);
+or(o1Im2,outputBuss4[1],outputBuss5[1],outputBuss6[1],outputBuss7[1]);
+or(o2Im1,outputBuss0[2],outputBuss1[2],outputBuss2[2],outputBuss3[2]);
+or(o2Im2,outputBuss4[2],outputBuss5[2],outputBuss6[2],outputBuss7[2]);
+or(o3Im1,outputBuss0[3],outputBuss1[3],outputBuss2[3],outputBuss3[3]);
+or(o3Im2,outputBuss4[3],outputBuss5[3],outputBuss6[3],outputBuss7[3]);
+or(o4Im1,outputBuss0[4],outputBuss1[4],outputBuss2[4],outputBuss3[4]);
+or(o4Im2,outputBuss4[4],outputBuss5[4],outputBuss6[4],outputBuss7[4]);
+or(o5Im1,outputBuss0[5],outputBuss1[5],outputBuss2[5],outputBuss3[5]);
+or(o5Im2,outputBuss4[5],outputBuss5[5],outputBuss6[5],outputBuss7[6]);
+or(o6Im1,outputBuss0[6],outputBuss1[6],outputBuss2[6],outputBuss3[6]);
+or(o6Im2,outputBuss4[6],outputBuss5[6],outputBuss6[6],outputBuss7[6]);
+or(o7Im1,outputBuss0[7],outputBuss1[7],outputBuss2[7],outputBuss3[7]);
+or(o7Im2,outputBuss4[7],outputBuss5[7],outputBuss6[7],outputBuss7[7]);
 
+//OR for final outputs
 
+or(o0, o0Im1,o0Im2);
+or(o1, o1Im1,o1Im2);
+or(o2, o2Im1,o2Im2);
+or(o3, o3Im1,o3Im2);
+or(o4, o4Im1,o4Im2);
+or(o5, o5Im1,o5Im2);
+or(o6, o6Im1,o6Im2);
+or(o7, o7Im1,o7Im2);
 
 endmodule
