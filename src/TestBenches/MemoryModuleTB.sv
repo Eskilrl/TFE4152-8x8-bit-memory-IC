@@ -20,13 +20,7 @@ module MemoryModule_tb;
   );
   
   // Test process
-  initial begin
-    // Monitor outputs during simulation
-    $monitor("Time: %0t | adr=%b%b%b | op=%b | select=%b | input=[%b%b%b%b%b%b%b%b] | output=[%b%b%b%b%b%b%b%b]", 
-              $time, adr2, adr1, adr0, op, select, 
-              i7, i6, i5, i4, i3, i2, i1, i0, 
-              o7, o6, o5, o4, o3, o2, o1, o0);
-              
+  initial begin         
     // Initialize inputs to zero
     i0 = 0; i1 = 0; i2 = 0; i3 = 0; i4 = 0; i5 = 0; i6 = 0; i7 = 0;
     adr0 = 0; adr1 = 0; adr2 = 0;

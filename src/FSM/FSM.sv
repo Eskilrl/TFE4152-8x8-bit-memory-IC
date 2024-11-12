@@ -9,11 +9,6 @@ module FSM (
     output rw
 );
 
-parameter Write = 2'b11;
-parameter Stable = 2'b01;
-parameter Read = 2'b10;
-parameter Idle = 2'b00;
-
 wire X0;
 wire X1;
 
@@ -38,8 +33,7 @@ or(N1,X0_and_X1,op_and_select);
 buf(valid,X0);
 buf(rw,X1);
 
-//Flip flops to store current state
-
+//Flip flops to store current,
 Dff dff_inst_0(
   .i_D(N0),
   .i_clk(i_clk),
@@ -51,5 +45,6 @@ Dff dff_inst_1(
   .i_clk(i_clk),
   .o_Q(X1)
 );
+
 
 endmodule
