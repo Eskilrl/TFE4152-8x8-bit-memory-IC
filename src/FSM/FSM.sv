@@ -9,40 +9,40 @@ module FSM (
     output rw
 );
 
-wire X0;
-wire X1;
+wire w_valid;
+wire w_rw;
 
 //Logic wires
 
-wire N0;
-wire N1;
-wire nand_X0_X1;
+wire next_valid;
+wire next_rw;
+wire nand_valid_rw;
 wire op_and_select;
-wire X0_and_X1;
+wire valid_and_rw;
 
 //next state logic here:
 
-nand(nand_X0_X1,X0,X1);
+nand(nand_valid_rw,w_valid,w_rw);
 and(op_and_select,op,select);
-not(X0_and_X1,nand_X0_X1);
+not(valid_and_rw,nand_valid_rw);
 
-and(N0,select,nand_X0_X1);
-or(N1,X0_and_X1,op_and_select);
+and(next_valid,select,nand_valid_rw);
+or(next_rw,valid_and_rw,op_and_select);
 
-buf(valid,X0);
-buf(rw,X1);
+buf(valid,w_valid);
+buf(rw,w_rw);
 
 //Flip flops to store current,
 Dff dff_inst_0(
-  .i_D(N0),
+  .i_D(next_valid),
   .i_clk(i_clk),
-  .o_Q(X0)
+  .o_Q(w_valid)
 );
 
 Dff dff_inst_1(
-  .i_D(N1),
+  .i_D(next_rw),
   .i_clk(i_clk),
-  .o_Q(X1)
+  .o_Q(w_rw)
 );
 
 
