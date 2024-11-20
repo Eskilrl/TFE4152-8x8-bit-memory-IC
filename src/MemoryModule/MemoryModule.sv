@@ -79,56 +79,56 @@ FSM FSM(
 MemCell Mem0 (
  .i_m_input(inputBuss),
  .i_m_sel(selectBuss[0]),
- .i_m_RW(op),
+ .i_m_RW(rw),
  .o_m_output(outputBuss0)
   );
 
 MemCell Mem1 (
  .i_m_input(inputBuss),
  .i_m_sel(selectBuss[1]),
- .i_m_RW(op),
+ .i_m_RW(rw),
  .o_m_output(outputBuss1)
   ); 
 
 MemCell Mem2 (
  .i_m_input(inputBuss),
  .i_m_sel(selectBuss[2]),
- .i_m_RW(op),
+ .i_m_RW(rw),
  .o_m_output(outputBuss2)
   ); 
 
 MemCell Mem3 (
  .i_m_input(inputBuss),
  .i_m_sel(selectBuss[3]),
- .i_m_RW(op),
+ .i_m_RW(rw),
  .o_m_output(outputBuss3)
   ); 
 
 MemCell Mem4 (
  .i_m_input(inputBuss),
  .i_m_sel(selectBuss[4]),
- .i_m_RW(op),
+ .i_m_RW(rw),
  .o_m_output(outputBuss4)
   ); 
 
 MemCell Mem5 (
  .i_m_input(inputBuss),
  .i_m_sel(selectBuss[5]),
- .i_m_RW(op),
+ .i_m_RW(rw),
  .o_m_output(outputBuss5)
   ); 
 
 MemCell Mem6 (
  .i_m_input(inputBuss),
  .i_m_sel(selectBuss[6]),
- .i_m_RW(op),
+ .i_m_RW(rw),
  .o_m_output(outputBuss6)
   ); 
 
 MemCell Mem7 (
  .i_m_input(inputBuss),
  .i_m_sel(selectBuss[7]),
- .i_m_RW(op),
+ .i_m_RW(rw),
  .o_m_output(outputBuss7)
   ); 
 
