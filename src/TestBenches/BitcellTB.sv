@@ -1,8 +1,7 @@
 `timescale 1ns/1ps
 
 module BitCell_tb;
-
-  // Inputs
+// Inputs
   reg i_sel;
   reg i_inp;
   reg i_wr;
