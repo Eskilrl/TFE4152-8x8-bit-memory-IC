@@ -36,7 +36,7 @@ module MemoryModule (
   output o7,
 );
 
-
+//Wire interconnects
 wire[2:0] adrBuss;
 wire[7:0] inputBuss;
 wire[7:0] selectBuss;
@@ -44,10 +44,10 @@ wire[7:0] outputBuss0, outputBuss1, outputBuss2, outputBuss3,
           outputBuss4, outputBuss5, outputBuss6, outputBuss7;
 wire o0Im1, o0Im2, o1Im1, o1Im2, o2Im1, o2Im2, o3Im1, o3Im2, o4Im1, o4Im2, o5Im1, o5Im2, o6Im1, o6Im2, o7Im1, o7Im2;
 
-
 wire valid;
 wire rw;
-	
+
+//Buffer translating inputs to interconnect bus
 buf(adrBuss[2],adr2);
 buf(adrBuss[1],adr1);
 buf(adrBuss[0],adr0);
@@ -61,6 +61,8 @@ buf(inputBuss[2],i2);
 buf(inputBuss[1],i1);
 buf(inputBuss[0],i0);
 
+
+//Instantiate controll modules
 Decoder decoder(
  .i_k_address(adrBuss),
  .valid(valid),
@@ -76,6 +78,7 @@ FSM FSM(
 );
 
 
+//Instantiate memory
 MemCell Mem0 (
  .i_m_input(inputBuss),
  .i_m_sel(selectBuss[0]),

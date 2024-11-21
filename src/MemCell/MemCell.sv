@@ -7,7 +7,8 @@ module MemCell (
 
  output[7:0] o_m_output
 );
-  
+ 
+//Instantiate bitcells
 BitCell BC_0(
  .sel(i_m_sel),
  .inp(i_m_input[0]),
