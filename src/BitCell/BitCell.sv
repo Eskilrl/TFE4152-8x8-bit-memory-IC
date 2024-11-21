@@ -11,6 +11,7 @@ input wr,
 output outp
 );
 
+//Interconnects
 wire nottempoutp;
 wire tempoutp;
 wire tempinp1;

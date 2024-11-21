@@ -9,19 +9,18 @@ module FSM (
     output rw
 );
 
+//Output buffer
 wire w_valid;
 wire w_rw;
 
 //Logic wires
-
 wire next_valid;
 wire next_rw;
 wire nand_valid_rw;
 wire op_and_select;
 wire valid_and_rw;
 
-//next state logic here:
-
+//next state logic
 nand(nand_valid_rw,w_valid,w_rw);
 and(op_and_select,op,select);
 not(valid_and_rw,nand_valid_rw);
