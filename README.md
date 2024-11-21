@@ -1,2 +1,2 @@
 # TFE4152-8x8-bit-memory-IC
-Course project to implement a 8x8 bit memory module. Including designing 1 bit latches with custom transistor spesifications, simulating it in SPICE, making the module in system verilog and writing test benches.
+This report will address the design and implementation of a 8x8-bit memory module. Including designing a 1-bit bitcell with custom transistor specifications, and simulating it with AIM-Spice using the 90nm gpdk process parameters with power consumption in mind. Then making the combined module in SystemVerilog and writing test benches to test the functionality of the whole system
